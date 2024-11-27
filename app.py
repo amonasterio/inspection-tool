@@ -1,4 +1,5 @@
 # Credit @tobias_willmann
+import params as p
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from oauth2client import client
@@ -25,12 +26,12 @@ def getNombreFichero(url_propiedad):
   nombre_fichero='output/'+now.strftime(formato_salida)+"_"+dominio+".csv"
   return nombre_fichero
 
-cuenta='eventflare'
-authorized='authorizedcreds_'+cuenta+'.dat' #guardará credenciales cuando nos hayamos logado
-propiedad='https://eventflare.io/'
-key='../credentials/client_secrets_'+cuenta+'.json'
+
+authorized='authorizedcreds_'+p.cuenta+'.dat' #guardará credenciales cuando nos hayamos logado
+
+key='../credentials/client_secrets_'+p.cuenta+'.json'
 f_entrada='url-list.csv'
-f_salida=getNombreFichero(propiedad)
+f_salida=getNombreFichero(p.propiedad)
 
 
 
@@ -155,7 +156,7 @@ if __name__ == '__main__':
     results=[]
     i=0
     for element in lista:
-      res=getResultado(service,element,propiedad)
+      res=getResultado(service,element,p.propiedad)
       i+=1
       print(i)
       print(res)
